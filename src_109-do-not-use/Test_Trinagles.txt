@@ -1,0 +1,123 @@
+void Triangle::applyBlend()
+{
+	//================================================================================
+	/*
+		Copy this part and paste it to the blend function, then you can see how triangles work correctly,
+	*/
+	//================================================================================
+	if(applyTriangle())// To check whether is theta3 is right one or not.
+	{
+		//int mode = reader->getTypeTriangle();
+		//if(mode == 0)
+		//{
+			lineColor.r = 218;
+			lineColor.g = 165;
+			lineColor.b = 320;
+
+			for (int i = 0; i < line1; i++)
+			{
+				Coord c1 = rotate2D(startPoint, 0, i, theta1);
+			
+				if (insideCanvas(c1))
+				{
+					//vC.push_back(c);
+					//writePixel(c1, lineColor);
+						RGB line1Color;
+						line1Color.r = 0;
+						line1Color.g = 255;
+						line1Color.b = 0;
+						writePixel(c1, line1Color);
+				}
+			}
+			for (int i = 0; i < line2; i++)
+			{
+				Coord c2 = rotate2D(startPoint, 0, i, theta2);
+			
+				if (insideCanvas(c2))
+				{
+					//vC.push_back(c);
+					//writePixel(c2, lineColor);
+						RGB line2Color;
+						line2Color.r = 0;
+						line2Color.g = 0;
+						line2Color.b = 255;
+						writePixel(c2, line2Color);
+				}
+			}
+			for (int i = 0; i < line3; i++)
+			{
+				Coord c3 = rotate2D(crossPoint, 0, i, theta3);
+				if (insideCanvas(c3))
+				{
+					//vC.push_back(c);
+					writePixel(c3, lineColor);
+					
+				}
+			}
+		//}
+		//else//Fill Triangle
+		//{				
+			float arrayX[] = {startPoint.x, endPointSecondLine.x, crossPoint.x};
+			//float arrayY[] = {y1, y2, y3};
+			float arrayY[] = {startPoint.y, endPointSecondLine.y,crossPoint.y};
+
+			float minX = arrayX[0];
+			float minY = arrayY[0]; 
+			float maxX = arrayX[0];
+			float maxY = arrayY[0];
+
+			for(int i = 0; i < 3; i++)
+			{
+				minX = GetMin(minX, arrayX[i]);
+				minY = GetMin(minY, arrayY[i]);
+				maxX = GetMax(maxX, arrayX[i]);
+				maxY = GetMax(maxY, arrayY[i]);
+			}
+			//-------------------------
+			
+			RGB lineColor2;
+			lineColor2.r = 255;
+			lineColor2.g = 0;
+			lineColor2.b = 0;
+			
+				Coord min1;
+				Coord min2;
+				Coord min3;
+				Coord min4;
+			 min1.x = minX;
+			min1.y = minY;
+			min2.x = maxX;
+			min2.y = minY;
+			min3.x = minX;
+			min3.y = maxY;
+			min4.x = maxX;
+			min4.y = maxY;
+
+			writePixel(min1, lineColor2);	
+			writePixel(min2, lineColor2);	
+			writePixel(min3, lineColor2);	
+			writePixel(min4, lineColor2);	
+
+			//-------------------------
+			//for (float y = vMaxMin.at(1); y < vMaxMin.at(3); y++)
+			for (float y = minY; y < maxY; y++)
+			{
+				for (float x = minX; x < maxX ; x++)
+				{	
+					Coord c = {x,y};
+					if (insideCanvas(c))
+					{	
+						if(barycentric(c))
+						{
+							RGB lineColor3;
+							lineColor3.r = 238;
+							lineColor3.g = 229;
+							lineColor3.b = 222;
+							writePixel(c, lineColor3);	
+						}
+					}
+				}
+			}
+		//}
+	}
+}

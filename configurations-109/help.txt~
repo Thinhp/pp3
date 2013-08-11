@@ -1,0 +1,31 @@
+Manage-Config.jar is designed to manage the process of doing multiple runs
+for a particular target image. For a particular target image, say 
+"my-target.png", we suggest that you have a configuration file called
+"my-target.txt".  When you have the parameter values you want, click 
+"SAVE TO Painter.txt" (or SAVE TO Mosaic-conf.txt) button to write the
+Painter.txt (Mosaic-conf.txt) file for the run. You will then need to
+start the npr (or mosaic) program in the usual way from another window.
+
+How to run the jar file: 
+In order to run the jar file, you firstly need to install JDK6
+(http://www.oracle.com/technetwork/java/javase/downloads/index.html) on your 
+system.  
+
+1. This application consists of the following files, all of which
+    must be present: 
+    Manage-Config.jar
+    quick-help.txt
+    help.txt
+
+2. Double click Mange-Config.jar 
+
+3. Use "File/open" to choose your configuration file. 
+
+4. You can find help in the help menu. There is a quick help file
+   for frequently used items. 
+5. When the value of a parameter is changed, other parameters that are
+   not relevant will be grayed out.
+6. Enter your input by pressing "enter" button or clicking other
+   enabled parameters to validate the new value.  If there are errors, you will find error messages in "error suggestions". 
+
+

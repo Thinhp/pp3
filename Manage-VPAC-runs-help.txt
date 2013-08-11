@@ -1,0 +1,47 @@
+Manage-VPAC-runs is designed to enable you to carry out NPR and
+MOSAIC runs on a VPAC super computer without having to learn the VPAC
+operating system and job submission language.
+
+To use Manage-VPAC-runs you must have a VPAC account.  Please contact
+vic.ciesielski@rmit.edu.au if you do not have an account.
+
+Manage-VPAC-runs assumes that you have set up your local computer to
+carry out the run you want.  Clicking "New" will copy the necessary
+files from your computer to VPAC and start the run.  When the run
+is finished you must click "Copy" to copy the output files from the
+job to your local computer.  After you have done this, your local
+computer will be in the same state as if you had carried out the run
+on it.  [*** With one exception, see below.]  
+
+The comment field is intended to help you keep track of the runs.  For
+example, "coloured lines, depth 7"
+
+The table of jobs is only updated after you click "Update".  You need
+to do this whenever you want to get the latest progress of jobs
+running at VPAC.
+
+If you want to see how a run is progressing, you can click on "Peek".
+This will copy the last frame written to the png directory to your
+local computer and display it in a pop-up window.
+
+If you find that a job is not running as expected you can kill it by
+clicking "Cancel".
+
+When you have copied all you need from the VPAC run you can remove the
+output files by clicking "Delete".
+
+***The files in the png directory are not copied because there could
+be many megabytes of images.  If you want a copy of these files,
+contact vic.ciesielski@rmit.edu.au.
+
+
+
+
+
+
+
+
+ 
+
+
+

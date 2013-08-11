@@ -1,0 +1,147 @@
+###########MAJOR DRAWING MODE##################################################
+
+# Drawing mode
+# 0: Pencil Sketch (The Shroud)
+# 1: Decals  (Stamps)
+# 2: Line Art (Squiggle)
+# 3: Triangles
+# 4: Palette Based Shroud
+drawMode 4
+
+############PARAMETERS THAT APPLY TO ALL RUNS########################
+
+# Target image -- don't include the folder name or the .png extension. There's
+# also no need to specify the name of the mask image.
+targetFilename albert
+
+# [Not sure if this is correct vc]
+# Palette... leave out the name of the folder and the file extension
+# If you wish to use the colours in the target image as the palette, type
+# "Target", leaving out the quotation marks
+palette Solids
+
+# Number of generations to evolve
+numGen 10000
+
+# Tree size
+minTreeSize 3
+maxTreeSize 4
+
+# Desired fitness
+fitnessTarget 0.005
+fitnessRenderThreshold 0.0001
+
+# Using Incremental Rendering?
+# 0: no
+# 1: yes
+usingAdaptiveCanvas 1
+
+# Population and initial population
+pop 4
+initPop 0
+
+# Elitism rate + Mutation rate + Crossover rate must equal population
+elitism 1
+crossover 2
+mutation 1
+
+# Random number seed
+randomSeed 0
+
+# Using tournament selection?
+# Yes: specify the tournament size
+# No: specify 0
+tournamentSize 0
+
+# file paths
+pathToTarget input/
+pathToMask masks/
+pathToOutput output/
+pathToPalette palettes/
+
+# Prog nodes to load
+# 0: no
+# 1: yes
+Prog2 0
+Prog3 1
+Prog4 1
+
+
+###########Pencil Sketch (The Shroud) Parameters###############################
+
+# Colour or grey level (Triagle Mode is just under GrayScale Mode, is NOT
+# colourfull)
+# 0: Gray Scale
+# 1: Colour full Scale
+#colourMode 1
+# NOTE: (perry) There is no 'colourMode' anymore. Drawing in colour is default behaviour. If you want to use gray scale then use gray targets and Dsaturated
+
+# Parameters for both grey level and colour(****But the fast convergence does
+# not work in Triangle Mode***, just leave it as a slow at this Mode)
+# NOTE: (perry) What?
+# Convergence rate
+# 0: slow convergence
+# 1: fast convergence -- sometimes TOO fast
+fastShroud 0
+
+# Which shape do you like to draw for rendering?
+# 0: line
+# 1: triangle
+shape 1
+
+# Which Triangle would do you prefer to draw for rendering?(This option is just
+# for Triangle **NOT** for the line)
+# 0: empty triangle
+# 1: fill triangle
+typeTriangle 1 
+
+# Line lenght to use (for rendering line just it uses the firstLineLength
+# parameter, not secondLineLength!!)
+# At the Triangle mode is better to use the length of lines less than 100 for
+# Swiss chess and Empty Triangle, otherwise it took ages to render
+# (even you set as "0" at Triangle Mode, again does not give you a quick
+# rendering, because the lines of triangle must be inside of the canvas.)
+# For Fill triangle does not have this problem so you can provide lien length
+# as "0" or even very larg one. 
+firstLineLength 60
+secondLineLength 10
+
+# Pixel replacement -- what to do if writing a pixel that has already been
+# 0: Blend the colours (Combined pixels)
+# 1: Don't draw the new pixel
+# 2: Don't draw the entire stroke
+# 3: Stop drawing the stroke
+pixelReplacement 0
+
+# Canvas background color
+canvasBG_R 255
+canvasBG_G 255
+canvasBG_B 255
+
+# Colour update Method (Use if Fastshroud is turned on)
+# 0: best channel
+# 1: whole pixels
+colourUpdater 1
+
+###########Decals (Stamps) Parameters##########################################
+
+# Decal name... leave out the name of the folder and the file extension
+customDecal brush
+
+###########Line art (Squiggle) Parameters######################################
+##### Line art parameters
+
+# Colour mode
+# 0: Black strokes on a white canvas
+# 1: Black AND white strokes on a white canvas
+# 2: Black and red strokes on a white canvas
+# 3: Black, red AND white strokes on a white canvas
+lineArtColorMode 0
+
+# Line thickness
+# 0: texta (3 pixel width)
+# 1: pencil (1 pixel width)
+lineArtThickness 1
+
+# DO NOT change this line
+version 1.08

@@ -1,0 +1,126 @@
+# projectName Painter.txt
+# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# Target image -- don't include the folder name or the .png extension.
+# rule FILE
+targetFilename albert
+# Number of generations to evolve
+# rule NUM_RANGE_INTEGER 1 1000000
+numGen 100
+# Drawing mode# 0: Pencil Sketch (The Shroud)# 1: Decals  (Stamps)# 2: Line Art (Squiggle) 3: Triangles  4: Palette Based Shroud
+# rule NUM_SELECTION 0 1 2 3 4 
+drawMode 3
+# Using Incremental Rendering?# 0: no# 1: yes
+# rule NUM_SELECTION 0 1 
+usingAdaptiveCanvas 1
+# Convergence rate# 0: slow convergence# 1: fast convergence -- sometimes TOO fast
+# rule NUM_SELECTION 0 1 
+fastShroud 1
+# 0: Gray Scale# 1: Colour  Scale
+# rule NUM_SELECTION 0 1 
+colourMode 1
+# Pixel replacement -- what to do if writing a pixel that has already been# 0: Blend the colours (Combined pixels)# 1: Don't draw the new pixel (It says if the stroke has got same color with a canvas do NOT draw anything again on that pixel)# 2: Don't draw the entire stroke (if even one pixel is same on the canvas with the stroke, Do not write that image at all(line or triangle))# 3: Stop drawing the stroke (if any pixel of image reached to the another image on the canvas, stop to draw rest of the image.)
+# rule NUM_SELECTION 0 1 2 3 
+pixelReplacement 0
+# 0: line# 1: triangle
+# rule NUM_SELECTION 0 1 
+shape 1
+# 0: empty triangle# 1: swiss cheese triangle# 2: fill triangle
+# rule NUM_SELECTION 0 1 2 
+typeTriangle 2
+# Line lenght to use (for rendering line just it uses the firstLineLength parameter, not secondLineLength!!)# At the Triangle mode is better to use the length of lines less than 100 for Swiss chess and Empty Triangle, otherwise it took ages to render# (even you set as "0" at Triangle Mode, again does not give you a quick rendering, because the lines of triangle must be inside of the canvas.)# For Fill triangle does not have this problem so you can provide lien length as "0" or even very larg one. 
+# rule NUM_RANGE_INTEGER 0 500
+firstLineLength 50
+
+# rule NUM_RANGE_INTEGER 0 500
+secondLineLength 40
+# Decal name... leave out the name of the folder and the file extension
+# rule FILE
+customDecal brush
+# Colour mode# 0: Black strokes on a white canvas# 1: Black AND white strokes on a white canvas# 2: Black and red strokes on a white canvas# 3: Black, red AND white strokes on a white canvas
+# rule NUM_SELECTION 0 1 2 3 
+lineArtColorMode 0
+# Line thickness# 0: texta (3 pixel width)# 1: pencil (1 pixel width)
+# rule NUM_SELECTION 0 1 
+lineArtThickness 1
+# Tree size
+# rule NUM_RANGE_INTEGER 1 15
+minTreeSize 2
+
+# rule NUM_RANGE_INTEGER 1 15
+maxTreeSize 3
+# Desired fitness
+# rule NUM_RANGE_REAL 1.0E-4 0.5
+fitnessTarget 0.005
+
+# rule NUM_RANGE_REAL 1.0E-4 0.5
+fitnessRenderThreshold 0.0001
+# Population and initial population
+# rule NUM_RANGE_INTEGER 4 100
+pop 4
+
+# rule NUM_RANGE_INTEGER 4 100
+initPop 0
+# Elitism rate + Mutation rate + Crossover rate must equal population
+# rule NUM_RANGE_INTEGER 4 100
+elitism 1
+
+# rule NUM_RANGE_INTEGER 4 100
+crossover 2
+
+# rule NUM_RANGE_INTEGER 4 100
+mutation 1
+# Random number seed
+# rule NUM_RANGE_INTEGER 0 1000000
+randomSeed 0
+# Using tournament selection?# Yes: specify the tournament size# No: specify 0
+# rule NUM_SELECTION 0 1 
+tournamentSize 1
+# Canvas background color for grey level
+# rule NUM_RANGE_INTEGER 0 255
+canvasBG 128
+# Canvas background color (ColourFullcale)
+# rule NUM_RANGE_INTEGER 0 255
+canvasBG_Red 0
+
+# rule NUM_RANGE_INTEGER 0 255
+canvasBG_Green 0
+
+# rule NUM_RANGE_INTEGER 0 255
+canvasBG_Blue 0
+# [Not sure where the palette is used vc]# Palette... leave out the name of the folder and the file extension# If you wish to use the colours in the target image as the palette, type# "Target", leaving out the quotation marks
+# rule FILE
+palette Grayscale
+# file paths
+# rule OTHERS
+pathToTarget input/
+
+# rule OTHERS
+pathToMask masks/
+
+# rule OTHERS
+pathToOutput output/
+
+# rule OTHERS
+pathToPalette palettes/
+# Prog nodes to load# 0: no# 1: yes
+# rule NUM_SELECTION 0 1 
+Prog2 0
+
+# rule NUM_SELECTION 0 1 
+Prog3 1
+
+# rule NUM_SELECTION 0 1 
+Prog4 1
+# Colour update Method (Use if Fastshroud is turned on)# 0: best channel# 1: whole pixels
+# rule NUM_SELECTION 0 1 
+colourUpdater 1
+# DO NOT change this line# xxxrule NUM_RANGE_REAL 1.0 10.0
+# rule NUM_SELECTION 1.09 
+Version 1.09
+# read-only version colourUpdater initPop Prog2 Prog3 Prog4 pop elitism crossover mutation
+# relation drawmode 0 colourMode shape usingAdaptiveCanvas pixelReplacement fastShroud 1 customDecal lineArtColorMode lineArtThickness 0
+# relation drawmode 1 customDecal 1 colourMode shape usingAdaptiveCanvas pixelReplacement fastShroud lineArtColorMode lineArtThickness 0
+# relation drawmode 2 lineArtColorMode lineArtThickness 1 colourMode shape usingAdaptiveCanvas pixelReplacement fastShroud customDecal 0
+# relation colourMode 0 canvasBG 1 canvasBG_Red canvasBG_Green canvasBG_Blue 0
+# relation colourMode 1 canvasBG_Red canvasBG_Green canvasBG_Blue 1 canvasBG 0
+# relation shape 0 firstLineLength 1 typeTriangle secondLineLength 0
+# relation shape 1 typeTriangle secondLineLength firstLineLength 1 0

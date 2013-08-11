@@ -1,0 +1,2039 @@
+***************
+*** 28,34 ****
+  	$(CC) -c $(CFLAGS) $(DEFINES) $(CXXINCLUDE) $(INCLUDE) $*.cpp
+  
+  clean:
+- 	$(RM) $(OBJS) $(OUTPUT)
+  
+  objects:
+  	@for f in $(OBJS); do echo $(DIR)/$$f; done
+--- 28,34 ----
+  	$(CC) -c $(CFLAGS) $(DEFINES) $(CXXINCLUDE) $(INCLUDE) $*.cpp
+  
+  clean:
++ 	$(RM) -f $(OBJS) $(OUTPUT)
+  
+  objects:
+  	@for f in $(OBJS); do echo $(DIR)/$$f; done
+***************
+*** 36,1975 ****
+  depend: $(SRCS)
+  	@(sed <Makefile '/^#--DEPENDENCIES--$$/,$$d'; \
+  	echo '#--DEPENDENCIES--'; \
+- 	$(CC) -c -M $(CFLAGS) $(CXXINCLUDE) $(INCLUDE) $(SRCS) \
+  	) > Makefile.new
+  	mv Makefile.new Makefile
+  
+  #--DEPENDENCIES--
+- Function.o: Function.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /usr/include/sys/wait.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+-   /usr/include/sys/machsig.h /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   Function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Node.h ReturnData.h GPConfig.h Random.h Crossover.h GeneticProgram.h \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Terminal.h NodeVector.h \
+-   NodeVector.cpp
+- Terminal.o: Terminal.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   Terminal.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Node.h ReturnData.h GPConfig.h Random.h Crossover.h GeneticProgram.h \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h NodeVector.h \
+-   NodeVector.cpp
+- Node.o: Node.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   ReturnData.h GPConfig.h Random.h Crossover.h GeneticProgram.h \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h Terminal.h \
+-   NodeVector.h NodeVector.cpp
+  ReturnData.o: ReturnData.cpp ReturnData.h
+- GeneticProgram.o: GeneticProgram.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+-   Function.h Node.h ReturnData.h Terminal.h NodeSet.h GPConfig.h Random.h \
+-   Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
+-   NodeVector.h NodeVector.cpp Util.h
+- Random.o: Random.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /usr/include/sys/wait.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+-   /usr/include/sys/machsig.h /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /usr/include/sys/unistd.h Random.h
+  Mutation.o: Mutation.cpp GPConfig.h Random.h Crossover.h GeneticProgram.h \
+-   ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h Terminal.h \
+-   NodeVector.h NodeVector.cpp ProgramGenerator.h
+- Crossover.o: Crossover.cpp Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   ReturnData.h Function.h GPConfig.h Random.h Crossover.h \
+-   GeneticProgram.h Mutation.h Selection.h Fitness.h NodeSet.h Terminal.h \
+-   NodeVector.h NodeVector.cpp
+- NodeSet.o: NodeSet.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   NodeSet.h GPConfig.h Random.h Crossover.h GeneticProgram.h ReturnData.h \
+-   Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h Function.h Terminal.h NodeVector.h \
+-   NodeVector.cpp
+- ProgramGenerator.o: ProgramGenerator.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+-   Terminal.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Node.h ReturnData.h Function.h NodeSet.h GPConfig.h Random.h \
+-   Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
+-   NodeVector.h NodeVector.cpp ProgramGenerator.h
+- Selection.o: Selection.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   Selection.h GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   GPConfig.h Random.h Crossover.h Mutation.h Fitness.h NodeSet.h \
+    Function.h Terminal.h NodeVector.h NodeVector.cpp
+- Population.o: Population.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/fstream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /usr/include/ctype.h /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/basic_file.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fstream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   Population.h GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Crossover.h Selection.h GPConfig.h Random.h Fitness.h \
+    NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp \
+    ProgramGenerator.h
+- Util.o: Util.cpp Util.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc
+- NodeVector.o: NodeVector.cpp NodeVector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   NodeVector.cpp
+- GPConfig.o: GPConfig.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /usr/include/sys/wait.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+-   /usr/include/sys/machsig.h /usr/include/sys/procset.h GPConfig.h \
+-   Random.h Crossover.h GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h Terminal.h \
+-   NodeVector.h NodeVector.cpp ProgramGenerator.h
+  Fitness.o: Fitness.cpp GPConfig.h Random.h Crossover.h GeneticProgram.h \
+-   ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h Terminal.h \
+    NodeVector.h NodeVector.cpp
+- GridPopulation.o: GridPopulation.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /usr/include/sys/wait.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sys/resource.h /usr/include/sys/siginfo.h \
+-   /usr/include/sys/machsig.h /usr/include/sys/procset.h GridPopulation.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /usr/include/ctype.h /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/fstream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/basic_file.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fstream.tcc \
+-   Population.h GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Crossover.h Selection.h GPConfig.h Random.h Fitness.h \
+-   NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp
+  CoEvolutionPopulation.o: CoEvolutionPopulation.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/feature_tests.h \
+-   /usr/include/sys/isa_defs.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h CoEvolutionPopulation.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /usr/include/ctype.h /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/fstream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/basic_file.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fstream.tcc \
+-   GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Crossover.h Selection.h Population.h GPConfig.h Random.h \
+-   Fitness.h NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp \
+    CoEvolutionFitness.h
+  CoEvolutionFitness.o: CoEvolutionFitness.cpp GPConfig.h Random.h \
+-   Crossover.h GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h NodeSet.h Function.h Terminal.h \
+-   NodeVector.h NodeVector.cpp CoEvolutionFitness.h
+  TournamentSelection.o: TournamentSelection.cpp TournamentSelection.h \
+-   GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Selection.h GPConfig.h Random.h Crossover.h Mutation.h Fitness.h \
+-   NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp
+- ADFunction.o: ADFunction.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   ADFunction.h Function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Node.h ReturnData.h ADFRoot.h ADFProgramGenerator.h NodeSet.h \
+-   GPConfig.h Random.h Crossover.h GeneticProgram.h Mutation.h Selection.h \
+-   Fitness.h Terminal.h NodeVector.h NodeVector.cpp ProgramGenerator.h
+- ADFRoot.o: ADFRoot.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   ADFRoot.h Function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Node.h ReturnData.h ADFProgramGenerator.h NodeSet.h GPConfig.h Random.h \
+    Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
+-   Terminal.h NodeVector.h NodeVector.cpp ProgramGenerator.h ADFunction.h
+- ADFProgramGenerator.o: ADFProgramGenerator.cpp \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/string \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++config.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/os_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stringfwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/char_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstring \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstddef \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stddef.h \
+-   /usr/include/string.h /usr/include/iso/string_iso.h \
+-   /usr/include/sys/feature_tests.h /usr/include/sys/isa_defs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/fpos.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++io.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdio \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdarg.h \
+-   /usr/include/iso/stdio_iso.h /usr/include/sys/va_list.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/stdio_tag.h \
+-   /usr/include/stdio_impl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/gthr-default.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/pthread.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/types.h \
+-   /usr/include/sys/machtypes.h /usr/include/sys/int_types.h \
+-   /usr/include/sys/select.h /usr/include/sys/time.h /usr/include/time.h \
+-   /usr/include/iso/time_iso.h /usr/include/sys/time_impl.h \
+-   /usr/include/sched.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwchar \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ctime \
+-   /usr/include/wchar.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/wchar_iso.h \
+-   /usr/include/wchar_impl.h /usr/include/ctype.h \
+-   /usr/include/iso/ctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/memory \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algobase.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/climits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/syslimits.h \
+-   /usr/include/iso/limits_iso.h /usr/include/sys/int_limits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cstdlib \
+-   /usr/include/stdlib.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/iso/stdlib_iso.h \
+-   /usr/include/sys/wait.h /usr/include/sys/resource.h \
+-   /usr/include/sys/siginfo.h /usr/include/sys/machsig.h \
+-   /usr/include/sys/procset.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/new \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iosfwd \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/c++locale.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/clocale \
+-   /usr/include/locale.h /usr/include/iso/locale_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/libintl.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cctype \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/functexcept.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/exception_defines.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_pair.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/type_traits.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_types.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator_base_funcs.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/concept_check.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_alloc.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_threads.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/atomicity.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_construct.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_uninitialized.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_raw_storage_iter.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_function.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/algorithm \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_algo.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_heap.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_tempbuf.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_string.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/iostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ostream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/ios \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/localefwd.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ios_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_classes.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/streambuf \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/streambuf_iterator.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cwctype \
+-   /usr/include/wctype.h /usr/include/iso/wctype_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_base.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/ctype_inline.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/codecvt.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/time_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/sparc-sun-solaris2.8/bits/messages_members.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/basic_ios.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/ostream.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/locale \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/locale_facets.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cerrno \
+-   /usr/include/errno.h /usr/include/sys/errno.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/cmath \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/math.h \
+-   /usr/include/iso/math_iso.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/floatingpoint.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/lib/gcc-lib/sparc-sun-solaris2.8/3.3.2/include/sys/ieeefp.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/cmath.tcc \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/limits \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/typeinfo \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/istream \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/istream.tcc \
+    ADFProgramGenerator.h NodeSet.h GPConfig.h Random.h Crossover.h \
+-   GeneticProgram.h ReturnData.h Node.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/vector \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_vector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/stl_bvector.h \
+-   /share/arch/SunOS~sun4u~5.8/pkg/gcc-3.3.2/include/c++/3.3.2/bits/vector.tcc \
+-   Mutation.h Selection.h Fitness.h Function.h Terminal.h NodeVector.h \
+-   NodeVector.cpp ProgramGenerator.h ADFunction.h ADFRoot.h
+--- 36,114 ----
+  depend: $(SRCS)
+  	@(sed <Makefile '/^#--DEPENDENCIES--$$/,$$d'; \
+  	echo '#--DEPENDENCIES--'; \
++ 	$(CC) -c -MM $(CFLAGS) $(CXXINCLUDE) $(INCLUDE) $(SRCS) \
+  	) > Makefile.new
+  	mv Makefile.new Makefile
+  
+  #--DEPENDENCIES--
++ Function.o: Function.cpp Function.h Node.h ReturnData.h GPConfig.h \
++   Random.h Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
++   NodeSet.h Terminal.h NodeVector.h NodeVector.cpp
++ Terminal.o: Terminal.cpp Terminal.h Node.h ReturnData.h GPConfig.h \
++   Random.h Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
++   NodeSet.h Function.h NodeVector.h NodeVector.cpp
++ Node.o: Node.cpp Node.h ReturnData.h GPConfig.h Random.h Crossover.h \
++   GeneticProgram.h Mutation.h Selection.h Fitness.h NodeSet.h Function.h \
++   Terminal.h NodeVector.h NodeVector.cpp
+  ReturnData.o: ReturnData.cpp ReturnData.h
++ GeneticProgram.o: GeneticProgram.cpp Function.h Node.h ReturnData.h \
++   Terminal.h NodeSet.h GPConfig.h Random.h Crossover.h GeneticProgram.h \
++   Mutation.h Selection.h Fitness.h NodeVector.h NodeVector.cpp Util.h
++ Random.o: Random.cpp Random.h
+  Mutation.o: Mutation.cpp GPConfig.h Random.h Crossover.h GeneticProgram.h \
++   ReturnData.h Node.h Mutation.h Selection.h Fitness.h NodeSet.h \
++   Function.h Terminal.h NodeVector.h NodeVector.cpp ProgramGenerator.h
++ Crossover.o: Crossover.cpp Node.h ReturnData.h Function.h GPConfig.h \
++   Random.h Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
++   NodeSet.h Terminal.h NodeVector.h NodeVector.cpp
++ NodeSet.o: NodeSet.cpp NodeSet.h GPConfig.h Random.h Crossover.h \
++   GeneticProgram.h ReturnData.h Node.h Mutation.h Selection.h Fitness.h \
+    Function.h Terminal.h NodeVector.h NodeVector.cpp
++ ProgramGenerator.o: ProgramGenerator.cpp Terminal.h Node.h ReturnData.h \
++   Function.h NodeSet.h GPConfig.h Random.h Crossover.h GeneticProgram.h \
++   Mutation.h Selection.h Fitness.h NodeVector.h NodeVector.cpp \
++   ProgramGenerator.h
++ Selection.o: Selection.cpp Selection.h GeneticProgram.h ReturnData.h \
++   Node.h GPConfig.h Random.h Crossover.h Mutation.h Fitness.h NodeSet.h \
++   Function.h Terminal.h NodeVector.h NodeVector.cpp
++ Population.o: Population.cpp Population.h GeneticProgram.h ReturnData.h \
++   Node.h Mutation.h Crossover.h Selection.h GPConfig.h Random.h Fitness.h \
+    NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp \
+    ProgramGenerator.h
++ Util.o: Util.cpp Util.h
++ NodeVector.o: NodeVector.cpp NodeVector.h NodeVector.cpp
++ GPConfig.o: GPConfig.cpp GPConfig.h Random.h Crossover.h GeneticProgram.h \
++   ReturnData.h Node.h Mutation.h Selection.h Fitness.h NodeSet.h \
++   Function.h Terminal.h NodeVector.h NodeVector.cpp ProgramGenerator.h
+  Fitness.o: Fitness.cpp GPConfig.h Random.h Crossover.h GeneticProgram.h \
++   ReturnData.h Node.h Mutation.h Selection.h Fitness.h NodeSet.h \
++   Function.h Terminal.h NodeVector.h NodeVector.cpp
++ GridPopulation.o: GridPopulation.cpp GridPopulation.h Population.h \
++   GeneticProgram.h ReturnData.h Node.h Mutation.h Crossover.h Selection.h \
++   GPConfig.h Random.h Fitness.h NodeSet.h Function.h Terminal.h \
+    NodeVector.h NodeVector.cpp
+  CoEvolutionPopulation.o: CoEvolutionPopulation.cpp \
++   CoEvolutionPopulation.h GeneticProgram.h ReturnData.h Node.h Mutation.h \
++   Crossover.h Selection.h Population.h GPConfig.h Random.h Fitness.h \
++   NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp \
+    CoEvolutionFitness.h
+  CoEvolutionFitness.o: CoEvolutionFitness.cpp GPConfig.h Random.h \
++   Crossover.h GeneticProgram.h ReturnData.h Node.h Mutation.h Selection.h \
++   Fitness.h NodeSet.h Function.h Terminal.h NodeVector.h NodeVector.cpp \
++   CoEvolutionFitness.h
+  TournamentSelection.o: TournamentSelection.cpp TournamentSelection.h \
++   GeneticProgram.h ReturnData.h Node.h Selection.h GPConfig.h Random.h \
++   Crossover.h Mutation.h Fitness.h NodeSet.h Function.h Terminal.h \
++   NodeVector.h NodeVector.cpp
++ ADFunction.o: ADFunction.cpp ADFunction.h Function.h Node.h ReturnData.h \
++   ADFRoot.h ADFProgramGenerator.h NodeSet.h GPConfig.h Random.h \
+    Crossover.h GeneticProgram.h Mutation.h Selection.h Fitness.h \
++   Terminal.h NodeVector.h NodeVector.cpp ProgramGenerator.h
++ ADFRoot.o: ADFRoot.cpp ADFRoot.h Function.h Node.h ReturnData.h \
+    ADFProgramGenerator.h NodeSet.h GPConfig.h Random.h Crossover.h \
++   GeneticProgram.h Mutation.h Selection.h Fitness.h Terminal.h \
++   NodeVector.h NodeVector.cpp ProgramGenerator.h ADFunction.h
++ ADFProgramGenerator.o: ADFProgramGenerator.cpp ADFProgramGenerator.h \
++   NodeSet.h GPConfig.h Random.h Crossover.h GeneticProgram.h ReturnData.h \
++   Node.h Mutation.h Selection.h Fitness.h Function.h Terminal.h \
++   NodeVector.h NodeVector.cpp ProgramGenerator.h ADFunction.h ADFRoot.h

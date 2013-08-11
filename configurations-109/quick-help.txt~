@@ -1,0 +1,45 @@
+drawMode
+  0: Pencil Sketch (The Shroud)
+  1: Decals  (Stamps)
+  2: Line Art (Squiggle)
+  
+usingAdaptiveCanvas
+ 0: no
+ 1: yes
+
+fastShroud
+ 0: slow convergence
+ 1: fast convergence -- sometimes TOO fast
+ 
+colourMode
+ 0: Gray Scale
+ 1: Colour
+
+pixelReplacement
+ 0: Blend the colours/gray levels
+ 1: Don't draw the new pixel [Not implemented]
+ 2: Partial stroke
+ 3: No stroke
+
+shape
+ 0: line
+ 1: triangle
+
+typeTriangle
+ 0: empty triangle
+ 1: swiss cheese triangle [Not Implemented]
+ 2: filled triangle
+
+lineArtColorMode
+ 0: Black strokes on a white canvas
+ 1: Black AND white strokes on a white canvas
+ 2: Black and red strokes on a white canvas
+ 3: Black, red AND white strokes on a white canvas
+
+lineArtThickness
+ 0: texta (3 pixel width)
+ 1: pencil (1 pixel width)
+
+
+
+
