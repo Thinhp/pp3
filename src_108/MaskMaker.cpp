@@ -16,15 +16,16 @@ MaskMaker::MaskMaker(const char* sourceFile, const char* outputFile,
                      unsigned T, unsigned N):
     source(NULL), output(NULL), threshold(T), numConvolutions(N)
 {
-  read_image(sourceFile, (color_t**)&source, &width, &height);
+  read_image(sourceFile, (color_t**)&source, &width, &height); //using methods read image from png.cpp
   numPixels = width * height;
-  const unsigned size = numPixels;
+  const unsigned size = numPixels; // total number of pixels that assign to const size
     
   strcpy(outputPath, outputFile);
     
   output = new RGB[size];
   RGB rgb = {255, 255, 255};
     
+  //put rgb which is all white(255,255,255) into array output
   for (unsigned i = 0; i < size; i++)
     output[i] = rgb;
 }

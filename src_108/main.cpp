@@ -69,7 +69,7 @@ const char* configfile;
 
 int main(int argc, char* argv[])
 {  
-  if (argv[2]==NULL)
+  if (argv[2]==NULL) // e.g. argv[2] = configuration/albert.txt
   {
     configfile="Painter.txt";
     cout<<"test1: "<<configfile<<endl;
@@ -82,8 +82,9 @@ int main(int argc, char* argv[])
 
   // Init the config file reader
   reader = new ConfigReader();
-  reader->readPainterData();
+  reader->readPainterData(); // Put every config info into ConfigReader reader object
 
+  /* The argv[1] can't be reached, don't know why this condition is here*/ 
   if (strcmp(argv[1], "-v") == 0)
   {
     cout << "Version: " << reader->getVersion() << endl;
@@ -92,24 +93,24 @@ int main(int argc, char* argv[])
   }
 
 // Output path
-  outputDir = argv[1];
-  outputDir.append("/");
+  outputDir = argv[1]; // e.g. albert_13-08-11-0825-25
+  outputDir.append("/"); // e.g. albert_13-08-11-0825-25/
 	  
   // File paths
-  string targetFileName = reader->getTargetFileName();
+  string targetFileName = reader->getTargetFileName(); // e.g. albert
 	    
-  string inputTarget = reader->getPathToTarget();
-  inputTarget.append(targetFileName);
-  inputTarget.append(".png");
+  string inputTarget = reader->getPathToTarget(); // The method just return a string from the jar file e.g. input/
+  inputTarget.append(targetFileName); // input/albert
+  inputTarget.append(".png"); // e.g. input/albert.png
 	
-  string inputMask = reader->getPathToMask();
-  inputMask.append(targetFileName);
-  inputMask.append(".png");
+  string inputMask = reader->getPathToMask(); // mask/
+  inputMask.append(targetFileName); // mask/albert
+  inputMask.append(".png"); // e.g. mask/albert.png
 	    
   string outputTarget = outputDir;
-  outputTarget.append("target.png");
+  outputTarget.append("target.png");  // e.g. albert_13-08-11-0825-25/target.png
   string outputMask = outputDir;
-  outputMask.append("mask.png");
+  outputMask.append("mask.png");    // e.g. albert_13-08-11-0825-25/mask.png
 
   // Check to see if the target and mask files exist
   // Attemp to get file stats. If we can, the files exist
@@ -125,8 +126,13 @@ int main(int argc, char* argv[])
     exit(1);
   }
     
+
   intStat = stat(inputMask.c_str(), &fileInfo);
-  if (intStat != 0) // Make a mask
+  /*Make a mask
+  *The MaskMaker takes an input image and applies a simple convolution mask to
+  * it in order to generate a simple black and white image that identifies
+  * "interesting" regions.*/
+  if (intStat != 0)
   {
     MaskMaker *mm =
       new MaskMaker(inputTarget.c_str(), inputMask.c_str(), 10, 2);
@@ -135,7 +141,7 @@ int main(int argc, char* argv[])
   }
 	    
 // The target and mask files have been validated/created, so copy them to
-// the output folder
+// the output folder.
   RGB* tmpImageData;
   unsigned tempW, tempH;
   read_image(inputTarget.c_str(), (color_t**)&tmpImageData, &tempW, &tempH);
@@ -143,7 +149,7 @@ int main(int argc, char* argv[])
   read_image(inputMask.c_str(), (color_t**)&tmpImageData, &tempW, &tempH);
   write_image(outputMask.c_str(), (color_t*)tmpImageData, tempW, tempH);
   delete tmpImageData;
-    
+
   // Initialise the target
   Target* target = new Target(inputTarget.c_str(), 
     inputMask.c_str(),
@@ -154,6 +160,7 @@ int main(int argc, char* argv[])
     reader->getFuzzyEdges());
 	
   // Initialise the palette
+  // Getting the number of pixels and unique color in the target image
   string paletteFile = reader->getPalette();
 
   if (paletteFile == "Target")
@@ -162,7 +169,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    string palettePath = reader->getPathToPalette();
+    string palettePath = reader->getPathToPalette(); // reader->getPathToPaletter = palette/
     string fullPalettePath = (palettePath.append(paletteFile)).append(".hex");
     palette = new Palette(fullPalettePath.c_str());
   }
@@ -174,18 +181,19 @@ int main(int argc, char* argv[])
   color_t bgB = reader->getCanvasBG_Blue();
 
   // Initialise the best canvas
-  BestCanvas* bestCanvasGray;
-  BestCanvas* bestCanvasColour;
-  bestCanvasGray = new BestCanvas(target, bgGray);
-  bestCanvasColour = new BestCanvas(target, bgR, bgG, bgB); 
+  BestCanvas* bestCanvasGray; // Canvas gray
+  BestCanvas* bestCanvasColour; // Canvas colour
+  bestCanvasGray = new BestCanvas(target, bgGray); // Create canvas gray instance
+  bestCanvasColour = new BestCanvas(target, bgR, bgG, bgB); // Create canvas colour instance
 	
-  bool TRIANGLES_MODE = reader->getShape() == 1 ? true : false;
-  const bool COLOR_MODE = reader->getColourMode() == 1 ? true : false;
-  int DRAW_MODE = reader->getDrawMode();
+  bool TRIANGLES_MODE = reader->getShape() == 1 ? true : false; // Check if Shape is equal to 1 (if so this bool is true)
+  const bool COLOR_MODE = reader->getColourMode() == 1 ? true : false; // check if colourmode is 1 ( if so this bool is true)
+  int DRAW_MODE = reader->getDrawMode(); //Drawing mode# 0: Pencil Sketch (The Shroud)# 1: Decals  (Stamps)# 2: Line Art (Squiggle)
 
   if (DRAW_MODE == 2) TRIANGLES_MODE = false;
   if (DRAW_MODE == 1) TRIANGLES_MODE = false;
 
+  //Start Triangle here
 
   if (TRIANGLES_MODE)
   {
@@ -237,8 +245,8 @@ int main(int argc, char* argv[])
 	}
     
 	// Set population size, log file name, config object
-	const int popSize = reader->getPopulation();
-	int initPop = reader->getInitialPopulation();
+	const int popSize = reader->getPopulation(); // Triangle case is 4
+	int initPop = reader->getInitialPopulation(); // Triangle case is 0
 
 	//LOG FILE=============================================================
 	// This was put in by Ashkan. I don't know what it does (perry)
@@ -258,7 +266,7 @@ int main(int argc, char* argv[])
 	strcpy(rlPath, runLogPath.c_str());
 
 	if (initPop == 0) { initPop = popSize; }
-	Population pop(popSize, initPop, rlPath, &gpConfig);
+	Population pop(popSize, initPop, rlPath, &gpConfig); // In RMITGP folder Population
 
 	// Set reproduction numbers. These numbers must add up to the population
 	// size.
@@ -287,7 +295,7 @@ int main(int argc, char* argv[])
 	gpConfig.termSet.addNodeToSet(ReturnFloat::TYPENUM, RandFloat::generate);
 
 	// Add the functions
-  if (TRIANGLES_MODE)
+  if (TRIANGLES_MODE) // TRIANGLES_MODE = (Shape = 1)
   {
     if (COLOR_MODE)
     {

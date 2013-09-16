@@ -69,6 +69,7 @@ void read_image(const char *filename, unsigned char **buf, unsigned int *width,
   if (png_ptr == NULL)
     errx(1, "png_create_read_struct - error here");
 
+  // Why info_ptr and end_info are basically the same ?? (thinh)
   info_ptr = png_create_info_struct(png_ptr);
   if (info_ptr == NULL)
     errx(1, "png_create_info_struct");

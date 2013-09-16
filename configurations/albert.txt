@@ -1,10 +1,10 @@
 # projectName Painter.txt
-# projectName Painter.txt# projectName Painter.txt# Target image -- don't include the folder name or the .png extension.
+# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# Target image -- don't include the folder name or the .png extension.
 # rule FILE
 targetFilename albert
 # Number of generations to evolve
 # rule NUM_RANGE_INTEGER 1 1000000
-numGen 1000
+numGen 3000
 # Drawing mode# 0: Pencil Sketch (The Shroud)# 1: Decals  (Stamps)# 2: Line Art (Squiggle)
 # rule NUM_SELECTION 0 1 2 
 drawMode 0
