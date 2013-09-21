@@ -239,8 +239,9 @@ void Triangle::applyFastShroud(Coord c, RGB lineColor)
 
 bool Triangle::applyTriangle()
 {
-	line1 = (int)lineLength1;
-	line2 = (int)lineLength2;
+	line1 = (int)lineLength1; //Line 1
+	line2 = (int)lineLength2; // Line 2
+	
 	
 	for (int i = 0; i < line1; i++)
 	{
@@ -413,7 +414,7 @@ void Triangle::fillUpTriangle(float minY,float maxY,float minX,float maxX){
 		}
 	}
 }
-bool Triangle::barycentric(Coord c)//To check the fixel whether is inside of the triangle or not
+bool Triangle::barycentric(Coord c)//To check the pixel whether is inside of the triangle or not
 {
 	float x = c.x;
 	float y = c.y;
@@ -674,6 +675,7 @@ void Triangle::computeSelectedFitness()
 	else
 		computeGrayFitness();
 }
+
 void Triangle::computeColourFitness()
 {
 

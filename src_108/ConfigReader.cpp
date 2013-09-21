@@ -47,6 +47,13 @@ void ConfigReader::readPainterData()
     if (key == "targetFilename")
       currentLine >> targetFileName;
 
+  		// For ellipse
+  		else if (key == "ellipseHorizontal")
+  			currentLine >> ellipseHorizontal;
+
+  		else if (key == "ellipseVertical")
+  			currentLine >> ellipseVertical;
+  		
 		else if (key == "colourMode")
 		  currentLine >> colourMode;
 

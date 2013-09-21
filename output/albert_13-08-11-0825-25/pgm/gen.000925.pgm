@@ -1,5 +1,0 @@
-P2
-Width 180
-Height 240
-255
-# program: (prog3 (DrawGrayTriangle float0.680933 float0.368861 float0.826837 float0.204634 float0.128673 float0.431991) (DrawGrayTriangle float0.826837 float0.368861 float0.437553 float0.131222 float0.437553 float0.854245) (DrawGrayTriangle float0.994422 float0.984656 float0.220562 float0.147824 float0.994422 float0.580326))

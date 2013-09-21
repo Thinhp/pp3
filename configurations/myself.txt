@@ -1,10 +1,14 @@
 # projectName Painter.txt
-# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# projectName Painter.txt# Target image -- don't include the folder name or the .png extension.
+# projectName Painter.txt# projectName Painter.txt# Target image -- don't include the folder name or the .png extension.
 # rule FILE
-targetFilename albert
+targetFilename myself
 # Number of generations to evolve
 # rule NUM_RANGE_INTEGER 1 1000000
-numGen 1000
+numGen 3500
+# EllipseHorizontal should not be so high
+ellipseHorizontal 20
+# EllipseVertical should not be so High
+ellipseVertical 30
 # Drawing mode# 0: Pencil Sketch (The Shroud)# 1: Decals  (Stamps)# 2: Line Art (Squiggle)
 # rule NUM_SELECTION 0 1 2 
 drawMode 0
@@ -22,15 +26,10 @@ colourMode 0
 pixelReplacement 0
 # 0: line# 1: triangle
 # rule NUM_SELECTION 0 1 
-shape 2
+shape 1
 # 0: empty triangle# 1: swiss cheese triangle# 2: fill triangle
 # rule NUM_SELECTION 0 1 2 
 typeTriangle 2
-# EllipseHorizontal should not be so high
-ellipseHorizontal 40
-# EllipseVertical should not be so High
-ellipseVertical 30
-# Type 
 # Line lenght to use (for rendering line just it uses the firstLineLength parameter, not secondLineLength!!)# At the Triangle mode is better to use the length of lines less than 100 for Swiss chess and Empty Triangle, otherwise it took ages to render# (even you set as "0" at Triangle Mode, again does not give you a quick rendering, because the lines of triangle must be inside of the canvas.)# For Fill triangle does not have this problem so you can provide lien length as "0" or even very larg one. 
 # rule NUM_RANGE_INTEGER 0 500
 firstLineLength 50

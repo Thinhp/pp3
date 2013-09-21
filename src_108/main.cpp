@@ -51,12 +51,14 @@ using namespace std;
 #include "BezierPathCanvas.h"
 #include "ShroudCanvas.h"
 #include "Triangle.h"
+#include "Ellipse.h"
 #include "BestCanvas.h"
 #include "MaskMaker.h"
 #include "ConfigReader.h"
 #include "Palette.h"
 #include "DrawColorTriangle.h"
 #include "DrawGrayTriangle.h"
+#include "DrawGrayEllipse.h"
 
 Target* target;
 Canvas* canvas;
@@ -189,9 +191,29 @@ int main(int argc, char* argv[])
   bool TRIANGLES_MODE = reader->getShape() == 1 ? true : false; // Check if Shape is equal to 1 (if so this bool is true)
   const bool COLOR_MODE = reader->getColourMode() == 1 ? true : false; // check if colourmode is 1 ( if so this bool is true)
   int DRAW_MODE = reader->getDrawMode(); //Drawing mode# 0: Pencil Sketch (The Shroud)# 1: Decals  (Stamps)# 2: Line Art (Squiggle)
+  
+  // Chosen Ellipse mode
+  bool ELLIPSE_MODE = reader->getShape() == 2 ? true : false;
 
-  if (DRAW_MODE == 2) TRIANGLES_MODE = false;
-  if (DRAW_MODE == 1) TRIANGLES_MODE = false;
+  if(ELLIPSE_MODE){
+    TRIANGLES_MODE = false;
+  }
+
+  if (DRAW_MODE == 2) {
+    TRIANGLES_MODE = false;
+    ELLIPSE_MODE = false;
+  }
+
+  if (DRAW_MODE == 1){
+    ELLIPSE_MODE = false;
+    TRIANGLES_MODE = false;
+  }
+
+  //Print out to check
+  if(ELLIPSE_MODE){
+    cout << "************** ELLIPSE_MODE ****************\n";
+  }
+    
 
   //Start Triangle here
 
@@ -202,7 +224,12 @@ int main(int argc, char* argv[])
     else
       canvas = new Triangle(target, bgGray, bestCanvasGray, reader);
 	}
-	else
+  //Start Ellipse here
+	else if(ELLIPSE_MODE){
+    //Graycolor
+    canvas = new Ellipse(target, bgGray, bestCanvasGray, reader);
+  }
+  else
 	{
     switch (DRAW_MODE)
     {
@@ -245,8 +272,8 @@ int main(int argc, char* argv[])
 	}
     
 	// Set population size, log file name, config object
-	const int popSize = reader->getPopulation(); // Triangle case is 4
-	int initPop = reader->getInitialPopulation(); // Triangle case is 0
+	const int popSize = reader->getPopulation(); // Triangle,Ellipse case is 4
+	int initPop = reader->getInitialPopulation(); // Triangle,Ellipse case is 0
 
 	//LOG FILE=============================================================
 	// This was put in by Ashkan. I don't know what it does (perry)
@@ -265,7 +292,7 @@ int main(int argc, char* argv[])
 	char rlPath[80];
 	strcpy(rlPath, runLogPath.c_str());
 
-	if (initPop == 0) { initPop = popSize; }
+	if (initPop == 0) { initPop = popSize; } // If init = 0 -> now Init = 4
 	Population pop(popSize, initPop, rlPath, &gpConfig); // In RMITGP folder Population
 
 	// Set reproduction numbers. These numbers must add up to the population
@@ -307,6 +334,10 @@ int main(int argc, char* argv[])
         gpConfig.funcSet.addNodeToSet(ReturnFunc::TYPENUM,
             DrawGrayTriangle::generate);
     }
+  }
+  else if (ELLIPSE_MODE){
+    // Gray only
+      gpConfig.funcSet.addNodeToSet(ReturnFunc::TYPENUM, DrawGrayEllipse::generate);
   }
   else
   {

@@ -21,6 +21,9 @@
 class ConfigReader
 {
 private:
+  // For ellipse
+  int ellipseHorizontal, ellipseVertical;
+
   int firstLineLength, secondLineLength, shape, typeTriangle, population,
       initPop, generations, elitism, mutation, crossover;
   int colourMode, colourUpdater;
@@ -58,6 +61,10 @@ public:
   ~ConfigReader();
 
   void readPainterData();
+
+  //For ellipse
+  int getEllipseHorizontal() { return ellipseHorizontal; }
+  int getEllipseVertical() { return ellipseVertical; }
 
   int getPopulation() { return population; }
   int getInitialPopulation() { return initPop; }
