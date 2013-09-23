@@ -17,7 +17,7 @@ OUTPUT = NPR-GP
 
 OBJS = BestCanvas.o BezierPathCanvas.o Canny.o Canvas.o ColorConverter.o \
 ConfigReader.o Decal.o DecalCanvas.o Draw2.o Draw4.o Draw6.o \
-DrawColorTriangle.o DrawGrayTriangle.o DrawGrayEllipse.o ImageFitness.o main.o MaskMaker.o \
+DrawColorTriangle.o DrawColorEllipse.o DrawGrayTriangle.o DrawGrayEllipse.o ImageFitness.o main.o MaskMaker.o \
 Palette.o Pixel.o png.o Prog2.o Prog3.o Prog4.o Ralph.o RandFloat.o \
 ReturnFloat.o ReturnFunc.o ReturnRoot.o ShroudCanvas.o Target.o Ellipse.o Triangle.o \
 util.o 
@@ -1360,6 +1360,125 @@ DrawColorTriangle.o: DrawColorTriangle.cpp DrawColorTriangle.h \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/sstream \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/sstream.tcc Decal.h \
  Palette.h Pixel.h
+DrawColorEllipse.o: DrawColorEllipse.cpp DrawColorEllipse.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/string \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++config.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/os_defines.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/cpu_defines.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stringfwd.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/char_traits.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_algobase.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/functexcept.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/exception_defines.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/cpp_type_traits.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ext/type_traits.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ext/numeric_traits.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_pair.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/move.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/concept_check.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_iterator.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/debug/debug.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/postypes.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cwchar \
+ /usr/include/wchar.h /usr/include/_ansi.h /usr/include/newlib.h \
+ /usr/include/sys/config.h /usr/include/machine/ieeefp.h \
+ /usr/include/sys/features.h /usr/include/cygwin/config.h \
+ /usr/include/sys/reent.h /usr/include/sys/_types.h \
+ /usr/include/machine/_types.h /usr/include/machine/_default_types.h \
+ /usr/include/sys/lock.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/stddef.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/stdarg.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/allocator.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++allocator.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ext/new_allocator.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/new \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/exception \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/atomic_lockfree_defines.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/localefwd.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++locale.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/clocale \
+ /usr/include/locale.h /usr/include/_ansi.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/iosfwd \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cctype \
+ /usr/include/ctype.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/ostream_insert.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/cxxabi_forced.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_function.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/backward/binders.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/range_access.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/basic_string.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ext/atomicity.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/gthr.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sys/types.h \
+ /usr/include/machine/types.h /usr/include/cygwin/types.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/stdint.h /usr/include/stdint.h \
+ /usr/include/bits/wordsize.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/byteswap.h \
+ /usr/include/sys/sysmacros.h /usr/include/signal.h \
+ /usr/include/sys/signal.h /usr/include/cygwin/signal.h \
+ /usr/include/sched.h /usr/include/sys/sched.h /usr/include/time.h \
+ /usr/include/machine/time.h /usr/include/cygwin/time.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/atomic_word.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/basic_string.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/iostream \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ostream \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ios \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/ios_base.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/locale_classes.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/locale_classes.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/streambuf \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/streambuf.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/basic_ios.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/locale_facets.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cwctype \
+ /usr/include/wctype.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/ctype_base.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/streambuf_iterator.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/ctype_inline.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/locale_facets.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/basic_ios.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/ostream.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/istream \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/istream.tcc \
+ /usr/include/math.h ../RMITGP.1.5/Function.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/vector \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_construct.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/ext/alloc_traits.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_uninitialized.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_vector.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_bvector.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/vector.tcc \
+ ../RMITGP.1.5/Node.h ../RMITGP.1.5/ReturnData.h ReturnFunc.h \
+ ../RMITGP.1.5/ReturnData.h ReturnFloat.h BezierPathCanvas.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cstdio \
+ /usr/include/stdio.h /usr/include/sys/stdio.h /usr/include/sys/cdefs.h \
+ Canvas.h /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cstdlib \
+ /usr/include/stdlib.h /usr/include/machine/stdlib.h \
+ /usr/include/alloca.h /usr/include/cygwin/stdlib.h \
+ /usr/include/cygwin/wait.h /usr/include/assert.h Utility.h png.h util.h \
+ Target.h /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/set \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_tree.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_set.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_multiset.h \
+ ColorConverter.h /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/algorithm \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/utility \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_relops.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_algo.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/algorithmfwd.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_heap.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/stl_tempbuf.h Canny.h \
+ Ralph.h BestCanvas.h ConfigReader.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/fstream \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/codecvt.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/basic_file.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++io.h \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/fstream.tcc \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/sstream \
+ /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/bits/sstream.tcc Decal.h \
+ Palette.h Pixel.h
 DrawGrayTriangle.o: DrawGrayTriangle.cpp DrawGrayTriangle.h \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/string \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++config.h \
@@ -1860,7 +1979,7 @@ main.o: main.cpp /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/cstring \
  ImageFitness.h /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/float.h \
  /usr/include/errno.h /usr/include/sys/errno.h DecalCanvas.h \
  ShroudCanvas.h Triangle.h Ellipse.h MaskMaker.h DrawColorTriangle.h \
- DrawGrayTriangle.h DrawGrayEllipse.h
+ DrawGrayTriangle.h DrawGrayEllipse.h DrawColorEllipse.h
 MaskMaker.o: MaskMaker.cpp MaskMaker.h \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/iostream \
  /usr/lib/gcc/i686-pc-cygwin/4.7.3/include/c++/i686-pc-cygwin/bits/c++config.h \

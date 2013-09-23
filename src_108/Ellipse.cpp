@@ -30,9 +30,23 @@ Ellipse::Ellipse(Target* t, color_t bg, BestCanvas* bc, ConfigReader* reader)
 	verticalLength = reader->getEllipseVertical();
 }
 
+//To implement Colourful scale
+Ellipse::Ellipse(Target* t, color_t bg_Red, color_t bg_Green, color_t bg_Blue, BestCanvas* bc, ConfigReader* reader)
+: Canvas(t, bg_Red, bg_Green, bg_Blue, bc), reader(reader)
+{
+  const int size = getSize();
+  ellipse = new RGB[size];
+	horizontalLength = reader->getEllipseHorizontal();
+	verticalLength = reader->getEllipseVertical();
 
-//to implement Colorful scale - NOT YET
-Ellipse::~Ellipse(){
+  rgbFitnessR=0.0f;
+  rgbFitnessG=0.0f;
+  rgbFitnessB=0.0f;
+
+}
+
+Ellipse::~Ellipse()
+{
 	delete ellipse;
 }
 
@@ -43,6 +57,16 @@ void Ellipse::paintCanvas(vector<float> v)
 	if(reader->getColourMode())
 	{
 		//TODO - Implement some code here
+		const unsigned ARGS = 7;
+		assert(v.size() == ARGS);
+
+		// Set up the line color
+		int red = (int)(v.at(3) * 256);
+		int green = (int)(v.at(5) * 256);
+		int blue = (int)(v.at(6) * 256);
+		lineColor.r = red;
+		lineColor.g = green;
+		lineColor.b = blue;
 	}
 	else
 	{
@@ -78,6 +102,45 @@ void Ellipse::paintCanvas(vector<float> v)
 
 }
 
+void Ellipse::fastColourTechnique3(RGB targetPixel,RGB canvasPixel,RGB lineColor, Coord c)
+{
+	int RedNewlineToTargetDiff = abs(targetPixel.r - lineColor.r);
+	int RedCanvasToTargetDiff = abs(targetPixel.r - canvasPixel.r);
+	if (RedNewlineToTargetDiff> RedCanvasToTargetDiff)
+		lineColor.r=canvasPixel.r;
+		
+	int GreenNewlineToTargetDiff = abs(targetPixel.g - lineColor.g);
+	int GreenCanvasToTargetDiff = abs(targetPixel.g - canvasPixel.g);
+	if (GreenNewlineToTargetDiff  > GreenCanvasToTargetDiff )
+		lineColor.g=canvasPixel.g;
+	
+	int BlueNewlineToTargetDiff = abs(targetPixel.b - lineColor.b);
+	int BlueCanvasToTargetDiff = abs(targetPixel.b - canvasPixel.b);
+	if (BlueNewlineToTargetDiff> BlueCanvasToTargetDiff )
+		lineColor.b=canvasPixel.b;
+	
+	if ((RedNewlineToTargetDiff < RedCanvasToTargetDiff ) || (GreenNewlineToTargetDiff < GreenCanvasToTargetDiff)	|| (BlueNewlineToTargetDiff < BlueCanvasToTargetDiff ))
+		writePixel(c, lineColor);
+}
+
+void Ellipse::fastColourTechnique2(RGB targetPixel,RGB canvasPixel,RGB lineColor,Coord c)
+{
+	int RedNewlineToTargetDiff = abs(targetPixel.r - lineColor.r);
+	int RedCanvasToTargetDiff = abs(targetPixel.r - canvasPixel.r);
+						
+	int GreenNewlineToTargetDiff = abs(targetPixel.g - lineColor.g);
+	int GreenCanvasToTargetDiff = abs(targetPixel.g - canvasPixel.g);
+						
+	int BlueNewlineToTargetDiff = abs(targetPixel.b - lineColor.b);
+	int BlueCanvasToTargetDiff = abs(targetPixel.b - canvasPixel.b);
+						
+	int TotalNewLineToTargetDiff= RedNewlineToTargetDiff + GreenNewlineToTargetDiff + BlueNewlineToTargetDiff;
+	int TotalCanvasToTargetDiff= RedCanvasToTargetDiff+ GreenCanvasToTargetDiff+ BlueCanvasToTargetDiff ;
+						
+	if (TotalNewLineToTargetDiff< TotalCanvasToTargetDiff)
+		writePixel(c, lineColor);
+}
+
 //fastGrayTechnique
 void Ellipse::fastGrayTechnique(RGB targetPixel,RGB canvasPixel,RGB lineColor,Coord c)
 {
@@ -109,14 +172,14 @@ void Ellipse::fastGrayTechnique(RGB targetPixel,RGB canvasPixel,RGB lineColor,Co
         case BLEND:
             applyBlend();
             break;
-        // case NO_PIXEL:
-        //     applyNoPixel();
-        //     break;
-        // case NO_STROKE:
-        //     applyNoStroke();
-        //     break;
-        // case STOP_STROKE:
-        //     applyStopStroke();
+        case NO_PIXEL:
+            applyNoPixel();
+            break;
+        case NO_STROKE:
+            applyNoStroke();
+            break;
+        case STOP_STROKE:
+            applyStopStroke();
     }
  }
 
@@ -125,8 +188,17 @@ void Ellipse::fastGrayTechnique(RGB targetPixel,RGB canvasPixel,RGB lineColor,Co
  	RGB targetPixel = getTarget()->getRGB(c);
 	RGB canvasPixel = getRGBData(getDataOffset(c));
 
-	//No colour yet so just gray
-	fastGrayTechnique(targetPixel,canvasPixel,lineColor,c);
+	if(reader->getColourMode())
+	{
+		if(reader->getColourUpdater())//To choose the best channel or whole pixels
+			fastColourTechnique3(targetPixel,canvasPixel,lineColor,c);						
+		else
+			fastColourTechnique2(targetPixel,canvasPixel,lineColor,c);
+	}
+	else{
+		//gray
+		fastGrayTechnique(targetPixel,canvasPixel,lineColor,c);	
+	}	
  }
 
  bool Ellipse::applyEllipse()
@@ -145,33 +217,68 @@ void Ellipse::fastGrayTechnique(RGB targetPixel,RGB canvasPixel,RGB lineColor,Co
 
 void Ellipse::applyBlend()
 {
-	if(applyEllipse())
+	
+	if(applyEllipse()) // To check whether the horizontal and vertical are coorect
 	{
-		// In this case I only do fill Ellipse first
-		std::vector<float> vectorX;
-		std::vector<float> vectorY;
+		int mode = reader->getTypeEllipse();
+		if(mode == 0) // Empty Ellipse
+		{
+			for(int y=-vertical; y<=vertical; y++) {
+				for(int x=-horizontal; x<=horizontal; x++) {
+					float tempright_x_plus = horizontal * (sqrt(1-( (y*y) / (vertical*vertical) )));
+					float tempright_x_minus = -horizontal * (sqrt(1-( (y*y) / (vertical*vertical) )));
+					float tempright_y_plus = -vertical * (sqrt(1-( (x*x) / (horizontal*horizontal) )));
+					float tempright_y_minus = -vertical * (sqrt(1-( (x*x) / (horizontal*horizontal) )));
 
-		for(int y=-vertical; y<=vertical; y++) {
-			for(int x=-horizontal; x<=horizontal; x++) {
-				if(x*x*vertical*vertical+y*y*horizontal*horizontal <= vertical*vertical*horizontal*horizontal){
-					vectorX.push_back(origin.x+x);
-					vectorY.push_back(origin.y+y);
+					// float templeft = x*x*vertical*vertical+y*y*horizontal*horizontal;
+					// float tempright = vertical*vertical*horizontal*horizontal;
+
+					// cout << "LEFT SIDE : " << templeft << endl;
+					// cout << "RIGHT SIDE : " << tempright << endl;
+
+					if( x == tempright_x_plus || y == tempright_y_plus ||
+						y == tempright_y_minus || x == tempright_x_minus){
+						Coord c1 = {origin.x + x, origin.y + y};
+						if(insideCanvas(c1))
+						{
+							if(reader->getFastShroud())
+								applyFastShroud(c1, lineColor);
+							else
+								writePixel(c1, lineColor);
+						}
+					}
 				}
 			}
 		}
+		else // Filled Eclipse
+		{ 
+			std::vector<float> vectorX;
+			std::vector<float> vectorY;
 
-		float minX = vectorX.at(0);
-		float minY = vectorY.at(0);
-		float maxX = vectorX.at(0);
-		float maxY = vectorY.at(0);
+			for(int y=-vertical; y<=vertical; y++) {
+				for(int x=-horizontal; x<=horizontal; x++) {
+					if(x*x*vertical*vertical+y*y*horizontal*horizontal <= vertical*vertical*horizontal*horizontal){
+						vectorX.push_back(origin.x+x);
+						vectorY.push_back(origin.y+y);
+					}
+				}
+			}
 
-		for(int i = 0; i < vectorX.size() ; i++){
-			minX = GetMin(minX, vectorX[i]);
-			minY = GetMin(minY, vectorY[i]);
-			maxX = GetMax(maxX, vectorX[i]);
-			maxY = GetMax(maxY, vectorY[i]);
+			float minX = vectorX.at(0);
+			float minY = vectorY.at(0);
+			float maxX = vectorX.at(0);
+			float maxY = vectorY.at(0);
+
+			for(int i = 0; i < vectorX.size() ; i++){
+				minX = GetMin(minX, vectorX[i]);
+				minY = GetMin(minY, vectorY[i]);
+				maxX = GetMax(maxX, vectorX[i]);
+				maxY = GetMax(maxY, vectorY[i]);
+			}
+
+			fillUpEllipse(minY,maxY,minX,maxX, vectorX, vectorY);			
 		}
-		fillUpEllipse(minY,maxY,minX,maxX, vectorX, vectorY);
+
 	}
 }
 
@@ -218,6 +325,106 @@ bool Ellipse::barycentric(Coord c, std::vector<float> allX, std::vector<float> a
 		return true;
 	}
 	return false;
+}
+
+void Ellipse::applyNoPixel(){}
+
+void Ellipse::applyNoStroke()
+{
+	std::vector<float> vectorX;
+	std::vector<float> vectorY;
+
+	if(applyEllipse())// To check whether horizontal and vertical are good
+	{
+		for(int y=-vertical; y<=vertical; y++) {
+				for(int x=-horizontal; x<=horizontal; x++) {
+					if(x*x*vertical*vertical+y*y*horizontal*horizontal <= vertical*vertical*horizontal*horizontal){
+						vectorX.push_back(origin.x+x);
+						vectorY.push_back(origin.y+y);
+					}
+				}
+			}
+
+			float minX = vectorX.at(0);
+			float minY = vectorY.at(0);
+			float maxX = vectorX.at(0);
+			float maxY = vectorY.at(0);
+
+			for(int i = 0; i < vectorX.size() ; i++){
+				minX = GetMin(minX, vectorX[i]);
+				minY = GetMin(minY, vectorY[i]);
+				maxX = GetMax(maxX, vectorX[i]);
+				maxY = GetMax(maxY, vectorY[i]);
+			}
+
+			for (float y = minY; y < maxY; y++)
+			{
+				for (float x = minX; x < maxX ; x++)
+				{	
+
+					Coord c = {x,y};
+					if (insideCanvas(c))
+						if(barycentric(c,vectorX,vectorY))
+							if (pixelIsWhite(c))//if (pixelIsDirty(c)) // Don't draw the pixel
+								return;
+				}	
+			}
+		fillUpEllipse(minY,maxY,minX,maxX,vectorX,vectorY);
+	}
+}
+
+void Ellipse::applyStopStroke()
+{
+	std::vector<float> vectorX;
+	std::vector<float> vectorY;
+
+	if(applyEllipse())
+	{
+		for(int y=-vertical; y<=vertical; y++) {
+			for(int x=-horizontal; x<=horizontal; x++) {
+				if(x*x*vertical*vertical+y*y*horizontal*horizontal <= vertical*vertical*horizontal*horizontal){
+					vectorX.push_back(origin.x+x);
+					vectorY.push_back(origin.y+y);
+				}
+			}
+		}
+
+		float minX = vectorX.at(0);
+		float minY = vectorY.at(0);
+		float maxX = vectorX.at(0);
+		float maxY = vectorY.at(0);
+
+		for(int i = 0; i < vectorX.size() ; i++){
+			minX = GetMin(minX, vectorX[i]);
+			minY = GetMin(minY, vectorY[i]);
+			maxX = GetMax(maxX, vectorX[i]);
+			maxY = GetMax(maxY, vectorY[i]);
+		}
+
+		for (float y = minY; y < maxY; y++)
+		{
+			for (float x = minX; x < maxX ; x++)
+			{	
+
+				Coord c = {x,y};
+				if (insideCanvas(c))
+				{
+					if(barycentric(c,vectorX,vectorY))
+					{
+						if(pixelIsWhite(c))
+							return;
+						else
+						{
+							if (reader->getFastShroud())//Fast convergence: fastShroud is on
+								applyFastShroud(c, lineColor);
+							else//Slow Convergence
+								writePixel(c, lineColor);
+						}
+					}
+				}				
+			}	
+		}
+	}
 }
 
 void Ellipse::writePixel(Coord c, RGB color){
@@ -270,33 +477,65 @@ void Ellipse::resetCanvas()
     }
     else
     {
-  //   	if(reader->getColourMode())
-		// {
-		// 	const color_t bg_Red = getbgColor_Red();
-		// 	const color_t bg_Green = getbgColor_Green();
-		// 	const color_t bg_Blue = getbgColor_Blue();
+    	if(reader->getColourMode())
+		{
+			const color_t bg_Red = getbgColor_Red();
+			const color_t bg_Green = getbgColor_Green();
+			const color_t bg_Blue = getbgColor_Blue();
 			
-		// 	RGB rgb= {bg_Red, bg_Green, bg_Blue};
-		// 	swipResetConvas(rgb);
-		// }
-		// else
-		// {
+			RGB rgb= {bg_Red, bg_Green, bg_Blue};
+			swipResetConvas(rgb);
+		}
+		else
+		{
 			const color_t bg = getBGColor();
 			RGB rgb = {bg, bg, bg};
 			swipResetConvas(rgb);
-		// }
+		}
 	}
     resetNumDrawNodes();
 }
 
 void Ellipse::computeSelectedFitness()
 {
-	// if(reader->getColourMode())
-	// {
-	// 	computeColourFitness();
-	// }
-	// else
+	if(reader->getColourMode())
+	{
+		computeColourFitness();
+	}
+	else
 		computeGrayFitness();
+}
+
+void Ellipse::computeColourFitness()
+{
+   
+    int width = getWidth();
+    int height = getHeight();
+
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            
+			Coord c = {x, y};
+            RGB targetPixel = getTarget()->getRGB(c);
+            RGB canvasPixel = getRGBData(getDataOffset(c));
+			
+			rgbFitnessR += abs(targetPixel.r - canvasPixel.r);
+			rgbFitnessG += abs(targetPixel.g - canvasPixel.g);
+			rgbFitnessB += abs(targetPixel.b - canvasPixel.b);
+		}
+    }
+	int theSize= getSize();
+	rgbFitnessR /= theSize;
+	rgbFitnessG /= theSize;
+	rgbFitnessB /= theSize;
+	   
+	rgbFitnessR /= 256.0f;
+	rgbFitnessG /= 256.0f;
+	rgbFitnessB /= 256.0f;
+
+	selectedFitness = ( (rgbFitnessR + rgbFitnessG + rgbFitnessB) / 3);
 }
 
 void Ellipse::computeGrayFitness()

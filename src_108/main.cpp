@@ -59,6 +59,7 @@ using namespace std;
 #include "DrawColorTriangle.h"
 #include "DrawGrayTriangle.h"
 #include "DrawGrayEllipse.h"
+#include "DrawColorEllipse.h"
 
 Target* target;
 Canvas* canvas;
@@ -194,8 +195,8 @@ int main(int argc, char* argv[])
   
   // Chosen Ellipse mode
   bool ELLIPSE_MODE = reader->getShape() == 2 ? true : false;
-
   if(ELLIPSE_MODE){
+    cout << "************** ELLIPSE_MODE ****************\n";
     TRIANGLES_MODE = false;
   }
 
@@ -207,11 +208,6 @@ int main(int argc, char* argv[])
   if (DRAW_MODE == 1){
     ELLIPSE_MODE = false;
     TRIANGLES_MODE = false;
-  }
-
-  //Print out to check
-  if(ELLIPSE_MODE){
-    cout << "************** ELLIPSE_MODE ****************\n";
   }
     
 
@@ -226,8 +222,10 @@ int main(int argc, char* argv[])
 	}
   //Start Ellipse here
 	else if(ELLIPSE_MODE){
-    //Graycolor
-    canvas = new Ellipse(target, bgGray, bestCanvasGray, reader);
+    if(COLOR_MODE)
+      canvas = new Ellipse(target, bgR, bgG, bgB, bestCanvasColour, reader);
+    else
+      canvas = new Ellipse(target, bgGray, bestCanvasGray, reader);
   }
   else
 	{
@@ -336,8 +334,16 @@ int main(int argc, char* argv[])
     }
   }
   else if (ELLIPSE_MODE){
-    // Gray only
-      gpConfig.funcSet.addNodeToSet(ReturnFunc::TYPENUM, DrawGrayEllipse::generate);
+      if(COLOR_MODE)
+      {
+        gpConfig.funcSet.addNodeToSet(ReturnFunc::TYPENUM,
+          DrawColorEllipse::generate);
+      }
+      else
+      {
+        gpConfig.funcSet.addNodeToSet(ReturnFunc::TYPENUM, 
+          DrawGrayEllipse::generate);
+      } 
   }
   else
   {
@@ -371,15 +377,12 @@ int main(int argc, char* argv[])
 
   // Set the random seed
   gpConfig.randomNumGenerator = new Random(reader->getRandomSeed());
-
   // Create the program generator
   gpConfig.programGenerator = new ProgramGenerator(&gpConfig);
-
   // Set the fitness class to be used
   gpConfig.fitnessObject = new ImageFitness(&gpConfig);
-
 	pop.generateInitialPopulation();
-	
+
   system("clear");
 	cout << "******************  New run  ******************\n";
 
@@ -389,7 +392,7 @@ int main(int argc, char* argv[])
 		string str1 = "";
 
 		const int NUM_GENERATIONS = reader->getGenerations();
-      
+    
 		if (pop.evolve(NUM_GENERATIONS))	
 			cout << "\nFound solution\n";
 		else

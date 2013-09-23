@@ -24,7 +24,7 @@ private:
   // For ellipse
   int ellipseHorizontal, ellipseVertical;
 
-  int firstLineLength, secondLineLength, shape, typeTriangle, population,
+  int firstLineLength, secondLineLength, shape, typeTriangle, typeEllipse, population,
       initPop, generations, elitism, mutation, crossover;
   int colourMode, colourUpdater;
 	int maxTree, minTree;
@@ -93,6 +93,7 @@ public:
 	int getSecondLineLength() { return secondLineLength; }
 	int getShape() { return shape; }//To check the shape of drawing
 	int getTypeTriangle(){return typeTriangle;}
+  int getTypeEllipse(){return typeEllipse;}
 
   std::string getCustomDecalFileName() { return customDecalFileName; }
   std::string getPathToTarget() { return pathToTarget; }

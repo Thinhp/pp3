@@ -51,9 +51,9 @@
   	// Apply a stroke
   	void applyPaint();
   	void applyBlend();
-  	//void applyNoPixel();
-  	//void applyNoStroke();
-  	//void applyStopStroke();
+  	void applyNoPixel();
+  	void applyNoStroke();
+  	void applyStopStroke();
 
   	/* This part need to consider */
   	// Write a pixel in RGB color space
@@ -112,7 +112,7 @@
   	void computeGrayFitness();
 
   // Perform clourfull fitness evaluation
-  	//void computeColourFitness();
+  	void computeColourFitness();
 
   	float getFitness() { return selectedFitness; }
 

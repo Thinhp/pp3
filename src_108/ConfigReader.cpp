@@ -128,6 +128,9 @@ void ConfigReader::readPainterData()
 
 		else if(key == "typeTriangle")
 			currentLine >> typeTriangle;
+
+		else if(key == "typeEllipse")
+			currentLine >> typeEllipse;
 		
 		else if (key == "firstLineLength")
 			currentLine >> firstLineLength;
